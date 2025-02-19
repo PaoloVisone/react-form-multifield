@@ -1,7 +1,44 @@
 import { useState } from "react";
 
 // Array di articoli
-const listArticles = ['Il miei viaggi', 'I miei pensieri', 'Le mie recensioni']
+const listArticles = [
+    {
+        id: 1,
+        titolo: "La bellezza della natura",
+        autore: "Giulia Bianchi",
+        contenuto: "La natura è un dono prezioso, che ci offre paesaggi mozzafiato e momenti di serenità.",
+        categoria: "Natura"
+    },
+    {
+        id: 2,
+        titolo: "L'importanza della lettura",
+        autore: "Marco Rossi",
+        contenuto: "La lettura è uno degli strumenti più potenti per crescere e conoscere il mondo.",
+        categoria: "Cultura"
+    },
+    {
+        id: 3,
+        titolo: "Tecnologie del futuro",
+        autore: "Luca Verdi",
+        contenuto: "L'intelligenza artificiale e la robotica stanno cambiando il nostro modo di vivere.",
+        categoria: "Tecnologia"
+    },
+    {
+        id: 4,
+        titolo: "Viaggiare in Italia",
+        autore: "Sara Neri",
+        contenuto: "L'Italia offre una varietà incredibile di destinazioni turistiche per tutti i gusti.",
+        categoria: "Viaggi"
+    },
+    {
+        id: 5,
+        titolo: "La cucina mediterranea",
+        autore: "Antonio Esposito",
+        contenuto: "La cucina mediterranea è famosa per la sua freschezza e i suoi sapori unici.",
+        categoria: "Cucina"
+    }
+];
+
 
 export default function input() {
 
