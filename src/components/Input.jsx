@@ -65,6 +65,13 @@ export default function input() {
         // setNewArticle('');
     }
 
+    function handleSubmit(e) {
+        e.preventDefault();
+        setListArticles((articles) => [...articles, { id: Date.now(), ...newArticle }]);
+        // resetto il form
+        setNewArticle(articleData);
+    }
+
     // Cancello articolo
     const removeArticle = i => {
         const updatedArticle = articles.filter((article, index) => {
@@ -77,7 +84,7 @@ export default function input() {
         <>
             <div id="content">
                 <div id="input-box">
-                    <form>
+                    <form onSubmit={handleSubmit}>
 
                         <input
                             type="text"
