@@ -101,15 +101,19 @@ export default function input() {
     return (
         <>
             <div id="content">
-                <div id="input-box">
-                    <form onSubmit={handleSubmit}>
 
+                <div id="input-box">
+
+
+                    <form onSubmit={handleSubmit}>
+                        <h1>INSERISCI IL TUO ARTICOLO</h1>
                         <input
                             type="text"
                             title="titolo"
                             value={newArticle.titolo}
                             onChange={handleData}
                             placeholder="Titolo"
+                            required
                         />
 
                         <input
@@ -118,15 +122,8 @@ export default function input() {
                             value={newArticle.autore}
                             onChange={handleData}
                             placeholder="Autore"
+                            required
                         />
-
-                        <textarea
-                            type="text"
-                            title="contenuto"
-                            value={newArticle.contenuto}
-                            onChange={handleData}
-                            placeholder="Contenuto"
-                        ></textarea>
 
                         <input
                             type="text"
@@ -134,7 +131,9 @@ export default function input() {
                             value={newArticle.categoria}
                             onChange={handleData}
                             placeholder="Categoria"
+                            required
                         />
+
 
                         <label htmlFor="disponibile">Disponibile</label>
                         <input
@@ -143,9 +142,21 @@ export default function input() {
                             checked={newArticle.disponibile}
                             onChange={handleData}
                             id="disponibile"
+                            required
                         />
 
-                        <button className="btn">Genera</button>
+                        <textarea
+                            type="text"
+                            title="contenuto"
+                            value={newArticle.contenuto}
+                            onChange={handleData}
+                            placeholder="Contenuto..."
+                            required
+                        ></textarea>
+
+                        <div id="button">
+                            <button className="btn">Genera</button>
+                        </div>
                     </form>
                 </div>
 
@@ -163,10 +174,10 @@ export default function input() {
                             <div className="post" key={article.id}>
 
                                 <h3>{article.titolo}</h3>
-                                <span>{article.autore}</span>
-                                <p>{article.contenuto}</p>
-                                <span>{article.categoria}</span>
-                                <p>{article.disponibile ? "Disponibile" : "Non disponibile"}</p>
+                                <h4>{article.autore}</h4>
+                                <p id="contenuto">{article.contenuto}</p>
+                                <span id="categoria">{article.categoria}</span>
+                                <p id="disponibile">{article.disponibile ? "Disponibile" : "Non disponibile!"}</p>
 
 
                                 {/* Delete button */}
