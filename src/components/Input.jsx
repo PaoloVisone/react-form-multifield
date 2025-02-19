@@ -84,26 +84,26 @@ export default function input() {
                 {articles.length === 0 ?
                     <h2>Non ci sono articoli</h2>
                     :
-                    <div id="list-box">
+                    <div id="content-art">
+                        {articles.map((article) => (
+                            <div className="post" key={article.id}>
+                                <h3>{article.titolo}</h3>
+                                <span>{article.autore}</span>
+                                <p>{article.contenuto}</p>
+                                <span>{article.categoria}</span>
 
-                        <ul>
-                            {articles.map((article, i) => (
-                                <li key={i}>
-                                    {article}
-
+                                <div className="content-btn">
                                     <button className="btn" onClick={() => removeArticle(i)}>
                                         Elimina
                                     </button>
+                                </div>
 
-                                </li>
-
-                            ))}
-                        </ul>
-
+                            </div>
+                        ))
+                        }
                     </div>
-
                 }
-            </div>
+            </div >
         </>
     )
 
