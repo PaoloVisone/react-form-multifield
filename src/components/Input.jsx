@@ -55,7 +55,7 @@ export default function input() {
     // Inserimento nuovo articolo
     const [newArticle, setNewArticle] = useState(articleData);
 
-    //funzione per gestire il form
+    //Funzione per gestire il form
     function handleData(e) {
         setNewArticle((newArticle) => ({
             ...newArticle,
@@ -65,6 +65,7 @@ export default function input() {
         // setNewArticle('');
     }
 
+    // Funzione per aggiungere gli articoli
     function handleSubmit(e) {
         e.preventDefault();
         setListArticles((articles) => [...articles, { id: articles[articles.length - 1].id + 1, ...newArticle }]);
@@ -72,14 +73,15 @@ export default function input() {
         setNewArticle(articleData);
     }
 
-    // // Cancello articolo
-    // const removeArticle = i => {
-    //     const updatedArticle = articles.filter((article, index) => {
-    //         return index !== i
-    //     });
-    //     setListArticles(updatedArticle);
-    // }
+    // Cancello articolo
+    function deleteArticle(idArticle) {
+        const updatedArticle = articles.filter((article) => {
+            return article.id !== idArticle
+        });
+        setListArticles(updatedArticle);
+    }
 
+    // Articoli
     return (
         <>
             <div id="content">
@@ -140,8 +142,9 @@ export default function input() {
                                 <p>{article.contenuto}</p>
                                 <span>{article.categoria}</span>
 
+                                {/* Delete button */}
                                 <div className="content-btn">
-                                    <button className="btn" onClick={() => removeArticle(i)}>
+                                    <button className="btn" onClick={() => deleteArticle(article.id)}>
                                         Elimina
                                     </button>
                                 </div>
