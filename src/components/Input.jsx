@@ -67,18 +67,18 @@ export default function input() {
 
     function handleSubmit(e) {
         e.preventDefault();
-        setListArticles((articles) => [...articles, { id: Date.now(), ...newArticle }]);
+        setListArticles((articles) => [...articles, { id: articles[articles.length - 1].id + 1, ...newArticle }]);
         // resetto il form
         setNewArticle(articleData);
     }
 
-    // Cancello articolo
-    const removeArticle = i => {
-        const updatedArticle = articles.filter((article, index) => {
-            return index !== i
-        });
-        setListArticles(updatedArticle);
-    }
+    // // Cancello articolo
+    // const removeArticle = i => {
+    //     const updatedArticle = articles.filter((article, index) => {
+    //         return index !== i
+    //     });
+    //     setListArticles(updatedArticle);
+    // }
 
     return (
         <>
