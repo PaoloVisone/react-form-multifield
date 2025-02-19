@@ -7,35 +7,40 @@ const listArticles = [
         titolo: "La bellezza della natura",
         autore: "Giulia Bianchi",
         contenuto: "La natura è un dono prezioso, che ci offre paesaggi mozzafiato e momenti di serenità.",
-        categoria: "Natura"
+        categoria: "Natura",
+        disponibile: true
     },
     {
         id: 2,
         titolo: "L'importanza della lettura",
         autore: "Marco Rossi",
         contenuto: "La lettura è uno degli strumenti più potenti per crescere e conoscere il mondo.",
-        categoria: "Cultura"
+        categoria: "Cultura",
+        disponibile: true
     },
     {
         id: 3,
         titolo: "Tecnologie del futuro",
         autore: "Luca Verdi",
         contenuto: "L'intelligenza artificiale e la robotica stanno cambiando il nostro modo di vivere.",
-        categoria: "Tecnologia"
+        categoria: "Tecnologia",
+        disponibile: true
     },
     {
         id: 4,
         titolo: "Viaggiare in Italia",
         autore: "Sara Neri",
         contenuto: "L'Italia offre una varietà incredibile di destinazioni turistiche per tutti i gusti.",
-        categoria: "Viaggi"
+        categoria: "Viaggi",
+        disponibile: false
     },
     {
         id: 5,
         titolo: "La cucina mediterranea",
         autore: "Antonio Esposito",
         contenuto: "La cucina mediterranea è famosa per la sua freschezza e i suoi sapori unici.",
-        categoria: "Cucina"
+        categoria: "Cucina",
+        disponibile: true
     }
 ];
 
@@ -44,7 +49,8 @@ const articleData = {
     titolo: "",
     autore: "",
     contenuto: "",
-    categoria: ""
+    categoria: "",
+    disponibile: false
 }
 
 
@@ -57,9 +63,14 @@ export default function input() {
 
     //Funzione per gestire il form
     function handleData(e) {
+        // Gestione del checkbox
+        const value =
+            e.target.type === "checkbox" ?
+                e.target.checked : e.target.value;
+
         setNewArticle((newArticle) => ({
             ...newArticle,
-            [e.target.title]: e.target.value,
+            [e.target.title]: value,
         }))
 
         // setNewArticle('');
@@ -69,7 +80,11 @@ export default function input() {
     // Con id giusto
     function handleSubmit(e) {
         e.preventDefault();
-        setListArticles((articles) => [...articles, { id: articles.length === 0 ? 1 : articles[articles.length - 1].id + 1, ...newArticle }]);
+        setListArticles((articles) => [...articles,
+        {
+            id: articles.length === 0 ? 1 : articles[articles.length - 1].id + 1,
+            ...newArticle
+        }]);
         // resetto il form
         setNewArticle(articleData);
     }
@@ -121,6 +136,15 @@ export default function input() {
                             placeholder="Categoria"
                         />
 
+                        <label htmlFor="disponibile">Disponibile</label>
+                        <input
+                            type="checkbox"
+                            title="disponibile"
+                            checked={newArticle.disponibile}
+                            onChange={handleData}
+                            id="disponibile"
+                        />
+
                         <button className="btn">Genera</button>
                     </form>
                 </div>
@@ -142,6 +166,8 @@ export default function input() {
                                 <span>{article.autore}</span>
                                 <p>{article.contenuto}</p>
                                 <span>{article.categoria}</span>
+                                <p>{article.disponibile ? "Disponibile" : "Non disponibile"}</p>
+
 
                                 {/* Delete button */}
                                 <div className="content-btn">
