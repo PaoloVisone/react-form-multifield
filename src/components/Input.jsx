@@ -65,10 +65,11 @@ export default function input() {
         // setNewArticle('');
     }
 
-    // Funzione per aggiungere gli articoli
+    // Funzione per aggiungere gli articoli 
+    // Con id giusto
     function handleSubmit(e) {
         e.preventDefault();
-        setListArticles((articles) => [...articles, { id: articles[articles.length - 1].id + 1, ...newArticle }]);
+        setListArticles((articles) => [...articles, { id: articles.length === 0 ? 1 : articles[articles.length - 1].id + 1, ...newArticle }]);
         // resetto il form
         setNewArticle(articleData);
     }
