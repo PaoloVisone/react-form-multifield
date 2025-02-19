@@ -39,13 +39,21 @@ const listArticles = [
     }
 ];
 
+// Variabile iniziale dell'articolo
+const articleData = {
+    titolo: "",
+    autore: "",
+    contenuto: "",
+    categoria: ""
+}
+
 
 export default function input() {
 
     // Stato dell'articolo
     const [articles, setListArticles] = useState(listArticles);
     // Inserimento nuovo articolo
-    const [newArticle, setNewArticle] = useState('');
+    const [newArticle, setNewArticle] = useState(articleData);
 
     //preventDefault per non inviare il Form
     const handleSubmit = e => {
@@ -70,8 +78,13 @@ export default function input() {
             <div id="content">
                 <div id="input-box">
                     <form onSubmit={handleSubmit}>
-                        <input type="text" value={newArticle}
+
+                        <input
+                            type="text"
+                            title="titolo"
+                            value={newArticle}
                             onChange={e => { setNewArticle(e.target.value) }} />
+
                         <button className="btn">INVIA</button>
                     </form>
                 </div>
@@ -86,7 +99,9 @@ export default function input() {
                     :
                     <div id="content-art">
                         {articles.map((article) => (
+
                             <div className="post" key={article.id}>
+
                                 <h3>{article.titolo}</h3>
                                 <span>{article.autore}</span>
                                 <p>{article.contenuto}</p>
