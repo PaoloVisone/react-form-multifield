@@ -55,17 +55,17 @@ export default function input() {
     // Inserimento nuovo articolo
     const [newArticle, setNewArticle] = useState(articleData);
 
-    //preventDefault per non inviare il Form
-    const handleSubmit = e => {
-        e.preventDefault();
-        // Creazione di un nuovo array
-        const updatedArticle = [...articles, newArticle];
-        setListArticles(updatedArticle);
-        // Svuto la cella
-        setNewArticle('');
+    //funzione per gestire il form
+    function handleData(e) {
+        setNewArticle((newArticle) => ({
+            ...newArticle,
+            [e.target.title]: e.target.value,
+        }))
+
+        // setNewArticle('');
     }
 
-    // Cancello elemento
+    // Cancello articolo
     const removeArticle = i => {
         const updatedArticle = articles.filter((article, index) => {
             return index !== i
@@ -77,15 +77,41 @@ export default function input() {
         <>
             <div id="content">
                 <div id="input-box">
-                    <form onSubmit={handleSubmit}>
+                    <form>
 
                         <input
                             type="text"
                             title="titolo"
-                            value={newArticle}
-                            onChange={e => { setNewArticle(e.target.value) }} />
+                            value={newArticle.titolo}
+                            onChange={handleData}
+                            placeholder="Titolo"
+                        />
 
-                        <button className="btn">INVIA</button>
+                        <input
+                            type="text"
+                            title="autore"
+                            value={newArticle.autore}
+                            onChange={handleData}
+                            placeholder="Autore"
+                        />
+
+                        <textarea
+                            type="text"
+                            title="contenuto"
+                            value={newArticle.contenuto}
+                            onChange={handleData}
+                            placeholder="Contenuto"
+                        ></textarea>
+
+                        <input
+                            type="text"
+                            title="categoria"
+                            value={newArticle.categoria}
+                            onChange={handleData}
+                            placeholder="Categoria"
+                        />
+
+                        <button className="btn">Genera</button>
                     </form>
                 </div>
 
